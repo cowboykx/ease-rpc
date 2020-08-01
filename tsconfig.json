@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "allowJs": false,
+    "alwaysStrict": true,
+    "importHelpers": true,
+    "lib": ["es5", "es6", "es7", "DOM"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmitOnError": true,
+    "noImplicitThis": true,
+    "noImplicitAny": false,
+    "sourceMap": false,
+    "declaration": true,
+    "declarationMap": false,
+    "target": "es2015",
+    "outDir": "lib",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["src"]
+}

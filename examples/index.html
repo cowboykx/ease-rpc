@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Example</title>
+</head>
+<body>
+  <h1>Parent</h1>
+  <iframe id="child" src="./child.html" style="border: none;"></iframe>
+  <script src="../dist/index.js"></script>
+  <p id="message"></p>
+  <button id="send">Parent -> Child</button>
+  <script type="text/javascript">
+    (function () {
+      function message(msg) {
+        document.querySelector('#message').innerHTML = msg;
+      }
+      
+      var server = new EaseRPC.RPCServer({
+        channelId: 'ease-rpc-child-parent',
+        emitter: document.querySelector('#child').contentWindow,
+      });
+
+      server.regist('message', (data) => {
+        message('from child: ' + JSON.stringify(data));
+        return { content: 'Hello Child.'};
+      });
+
+      // parent -> child
+      var client = new EaseRPC.RPCClient({
+        channelId: 'ease-rpc-parent-child',
+        emitter: document.querySelector('#child').contentWindow,
+      });
+
+      document.querySelector('#send').addEventListener('click', async e => {
+        const response = await client.call('message', { content: 'Hello Child' });
+        
+        message('from child: ' + JSON.stringify(response));
+      });
+    })()
+  </script>
+</body>
+</html>

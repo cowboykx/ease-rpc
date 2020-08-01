@@ -1,0 +1,7 @@
+/node_modules
+yarn-error.log
+.env
+**/.tea
+test/blank/dist.amr
+package-lock.json
+/lib

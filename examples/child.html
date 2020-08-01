@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <style type="text/css">
+    body {
+      background-color: #d3d3d3;
+    }
+  </style>
+  <h1>Child</h1>
+  <p id="message"></p>
+  <script src="../dist/index.js"></script>
+  <button id="send">Child -> Parent</button>
+  <script type="text/javascript">
+    (function () {
+      function message(msg) {
+        document.querySelector('#message').innerHTML = msg;
+      }
+
+      // client
+      var client = new EaseRPC.RPCClient({
+        channelId: 'ease-rpc-child-parent',
+        emitter: window.parent,
+      });
+      
+      document.querySelector('#send').addEventListener('click', async e => {
+        const response = await client.call('message', { content: 'Hello Parent' });
+        
+        message('from parent: ' + JSON.stringify(response));
+      });
+
+      // server
+      var server = new EaseRPC.RPCServer({
+        channelId: 'ease-rpc-parent-child',
+        emitter: window.parent,
+      });
+
+      server.regist('message', (data) => {
+        message('from parent: ' + JSON.stringify(data));
+        return { content: 'Hello Parent.'};
+      });
+    })()
+  </script>
+</body>
+</html>
