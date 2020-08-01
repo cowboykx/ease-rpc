@@ -14,7 +14,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "http://gitlab.alibaba-inc.com/polygon/miniapp-simulator-sdk"
+    "url": "https://github.com/cowboykx/ease-rpc"
   },
   "dependencies": {},
   "devDependencies": {
@@ -27,9 +27,6 @@
     "webpack-dev-server": "^3.10.3",
     "webpack-merge": "^4.2.2"
   },
-  "publishConfig": {
-    "registry": "https://registry.npm.alibaba-inc.com"
-  },
-  "author": "yingyi.zj",
+  "author": "cowboy.kx",
   "license": "ISC"
 }
